@@ -1,0 +1,37 @@
+name: Build and Release macOS App
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build macOS package
+        run: npm run package-mac
+
+      - name: Zip .app file
+        run: zip -r perplexity.ai.zip perplexity.ai-darwin-x64/perplexity.ai.app
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./perplexity.ai.zip
+          asset_name: perplexity.ai-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
