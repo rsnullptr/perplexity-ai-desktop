@@ -5,11 +5,16 @@
   "icon": "icons/logo.png",
   "dependencies": {
     "clipboardy": "^4.0.0",
+    "electron-packager": "^17.1.2"
+  },
+  "devDependencies": {
+    "clipboardy": "^4.0.0",
     "electron": "^32.1.1",
     "electron-packager": "^17.1.2"
   },
   "scripts": {
     "start": "electron .",
-    "package-mac": "electron-packager . --icon=icons/logo.icns"
+    "package-mac-arm64": "electron-packager . --overwrite --platform=darwin --arch=arm64 --icon=icons/logo.icns --prune=true --out=release-builds",
+    "package-mac-x64": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icons/logo.icns --prune=true --out=release-builds"
   }
 }

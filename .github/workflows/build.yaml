@@ -20,18 +20,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build macOS package
-        run: npm run package-mac
+      - name: Build macOS arm64 package
+        run: npm run package-mac-arm64; zip -r perplexity.ai-darwin-arm64.zip ./release-builds/perplexity.ai-darwin-arm64/perplexity.ai.app
 
-      - name: Zip .app file
-        run: zip -r perplexity.ai.zip perplexity.ai-darwin-x64/perplexity.ai.app
+      - name: Build macOS x6464 package
+        run: npm run package-mac-x64; zip -r perplexity.ai-darwin-x64.zip ./release-builds/perplexity.ai-darwin-x64/perplexity.ai.app
 
-      - name: Upload Release Asset
+      - name: Upload Release Asset arm64
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./perplexity.ai.zip
-          asset_name: perplexity.ai-${{ github.ref_name }}.zip
+          asset_path: ./perplexity.ai-darwin-arm64.zip
+          asset_name: perplexity.ai-darwin-arm64-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload Release Asset x64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./perplexity.ai-darwin-x64.zip
+          asset_name: perplexity.ai-darwin-x64-${{ github.ref_name }}.zip
           asset_content_type: application/zip
