@@ -1,0 +1,15 @@
+{
+  "name": "perplexity.ai",
+  "version": "1.0.0",
+  "main": "main.js",
+  "icon": "icons/logo.png",
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "electron": "^32.1.1",
+    "electron-packager": "^17.1.2"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --icon=icons/logo.icns"
+  }
+}
