@@ -1,5 +1,5 @@
 {
-  "name": "perplexity.ai",
+  "name": "Perplexity",
   "version": "1.0.0",
   "main": "main.js",
   "icon": "icons/logo.png",
@@ -10,11 +10,14 @@
   "devDependencies": {
     "clipboardy": "^4.0.0",
     "electron": "^32.1.1",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "electron-installer-dmg": "^5.0.1"
   },
   "scripts": {
     "start": "electron .",
     "package-mac-arm64": "electron-packager . --overwrite --platform=darwin --arch=arm64 --icon=icons/logo.icns --prune=true --out=release-builds",
-    "package-mac-x64": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icons/logo.icns --prune=true --out=release-builds"
+    "package-mac-x64": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icons/logo.icns --prune=true --out=release-builds",
+    "create-installer-mac-arm64": "electron-installer-dmg ./release-builds/Perplexity-darwin-arm64/Perplexity.app Perplexity-installer-arm64 --out=release-builds --overwrite --icon=icons/logo.icns",
+    "create-installer-mac-x64": "electron-installer-dmg ./release-builds/Perplexity-darwin-x64/Perplexity.app Perplexity-installer-x64 --out=release-builds --overwrite --icon=icons/logo.icns"
   }
 }

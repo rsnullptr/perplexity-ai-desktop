@@ -24,10 +24,10 @@ jobs:
         run: npm ci
 
       - name: Build macOS arm64 package
-        run: npm run package-mac-arm64; zip -r perplexity.ai-darwin-arm64.zip ./release-builds/perplexity.ai-darwin-arm64/perplexity.ai.app
+        run: npm run package-mac-arm64 && npm run create-installer-mac-arm64
 
-      - name: Build macOS x6464 package
-        run: npm run package-mac-x64; zip -r perplexity.ai-darwin-x64.zip ./release-builds/perplexity.ai-darwin-x64/perplexity.ai.app
+      - name: Build macOS x64 package
+        run: npm run package-mac-x64 && npm run create-installer-mac-x64
 
       - name: Upload Release Asset arm64
         uses: actions/upload-release-asset@v1
@@ -35,9 +35,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./perplexity.ai-darwin-arm64.zip
-          asset_name: perplexity.ai-darwin-arm64-${{ github.ref_name }}.zip
-          asset_content_type: application/zip
+          asset_path: ./release-builds/Perplexity-installer-arm64.dmg
+          asset_name: Perplexity-installer-arm64-${{ github.ref_name }}.dmg
+          asset_content_type: application/dmg
 
       - name: Upload Release Asset x64
         uses: actions/upload-release-asset@v1
@@ -45,6 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./perplexity.ai-darwin-x64.zip
-          asset_name: perplexity.ai-darwin-x64-${{ github.ref_name }}.zip
-          asset_content_type: application/zip
+          asset_path: ./release-builds/Perplexity-installer-x64.dmg
+          asset_name: Perplexity-installer-x64-${{ github.ref_name }}.dmg
+          asset_content_type: application/dmg
