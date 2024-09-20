@@ -3,3 +3,7 @@
 /node_modules/
 .DS_Store
 /release-builds/
+/scripts/InstallPerplexity-arm64.applescript
+/scripts/InstallPerplexity-x64.applescript
+/scripts/Perplexity-installer-arm64.app/
+/scripts/Perplexity-installer-x64.app/

@@ -35,9 +35,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./release-builds/Perplexity-installer-arm64.dmg
-          asset_name: Perplexity-installer-arm64-${{ github.ref_name }}.dmg
-          asset_content_type: application/dmg
+          asset_path: ./scripts/Perplexity-installer-arm64.app
+          asset_name: Perplexity-installer-arm64-${{ github.ref_name }}.app
+          asset_content_type: application/app
 
       - name: Upload Release Asset x64
         uses: actions/upload-release-asset@v1
@@ -45,6 +45,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./release-builds/Perplexity-installer-x64.dmg
-          asset_name: Perplexity-installer-x64-${{ github.ref_name }}.dmg
-          asset_content_type: application/dmg
+          asset_path: ./scripts/Perplexity-installer-x64.app
+          asset_name: Perplexity-installer-x64-${{ github.ref_name }}.app
+          asset_content_type: application/app
